@@ -5,7 +5,7 @@ This repository includes 2 sample codes
 - subscribe events from IoT device
 - add records with datetime into Cloudant DB
 - send warming messages to user via Twilio SMS
-- send alarm commands to IoT devic
+- send alarm commands to IoT device
 
 # Device on Arduino Uno
 - IR detector
