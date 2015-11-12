@@ -23,7 +23,7 @@ String deviceEvent;
 // 紅外線
 const int irReceiver = 2;                // 紅外線接收器
 const int irLed  = 3;                    // 紅外線發射器
-const int ledPin = 13;                   // 紅外線指示燈
+const int ledPin = 13;                   // LED燈
 const unsigned int frequency = 35000;    // 發射頻率(單位: Hz)
 
 void setup() {
@@ -31,7 +31,7 @@ void setup() {
   Ethernet.begin(mac);
   
   pinMode(irReceiver, INPUT);           // 把 irReceiver 接腳設置為 INPUT
-  pinMode(irLed, OUTPUT);               // 把 irLed 接腳設置為 INPUT
+  pinMode(irLed, OUTPUT);               // 把 irLed 接腳設置為 OUTPUT
   pinMode(ledPin, OUTPUT);              // 把 ledPin 設置為 OUTPUT
   tone(irLed, frequency);               // 產生指定頻率的脈波 (Pulses)  
   delay(1000);
@@ -42,7 +42,7 @@ void turn_on_LED() {
   for (byte i=0;i<5;i++){
     digitalWrite(ledPin, HIGH);          // 打開指示燈
     delay(100);
-    digitalWrite(ledPin, LOW);          // 打開指示燈
+    digitalWrite(ledPin, LOW);          // 關掉指示燈
     delay(100);
   }
 }
@@ -123,9 +123,9 @@ void messageArrived(MQTT::MessageData& md) {
     char * payload = (char*)message.payload;
     payload[payloadLen] = '\0';  
     
-    //Command topic: iot-2/cmd/alerm/fmt/json
+    //Command topic: iot-2/cmd/alarm/fmt/json
 
-    if(strstr(topic, "/cmd/alerm") != NULL) {
+    if(strstr(topic, "/cmd/alarm") != NULL) {
       Serial.print("Command IS Supported : ");
       Serial.print(payload);
       Serial.println("\t.....\n");
